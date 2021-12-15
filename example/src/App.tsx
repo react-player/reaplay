@@ -1,9 +1,13 @@
 import React from 'react'
 
-import { Reaplay } from 'reaplay'
+// import { Reaplay } from 'reaplay';
+
+import {songs} from './Links.json'
 
 const App = () => {
-  return <Reaplay text="Create React Library Example 😄" />
+  console.log(songs);
+  
+  return <div></div>
 }
 
 export default App

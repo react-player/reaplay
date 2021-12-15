@@ -20,7 +20,6 @@ const App = () => {
   return (
     <Reaplay tracks={songsFromLocal} startIndex={10}>
       {(player: any) => {
-        console.log(player.trackIndex);
 
         return (
           <>
@@ -56,8 +55,26 @@ const App = () => {
                 <button onClick={() => player.toPrevTrack()}>prev</button>
                 <button onClick={() => player.setIsPlaying((isPlay: boolean) => !isPlay)}>{player.isPlaying ? "pause" : "play"}</button>
                 <button onClick={() => player.toNextTrack()}>next</button>
+                <button onClick={() => player.setIsRepeat((isRepeat: boolean) => !isRepeat)}>{player.isRepeat ? "un repeat" : "repeat"}</button>
               </div>
 
+              <div className='track-volume'>
+                <p>{player.volume}</p>
+                <input
+                    type='range'
+                    value={player.volume}
+                    step='1'
+                    min="0"
+                    max="100"
+                    onChange={(e) => player.setVolume(e.target.value)}
+                    className='volume-range'
+                  />
+                  <button
+                    onClick={() => player.setIsMute((isMute: boolean) => !isMute)}
+                    style={{padding: "5px"}}
+                  >{player.isMute ? "unmute" : "mute"}</button>
+              </div>
+              
             </div>
           </>
         )

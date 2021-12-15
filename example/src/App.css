@@ -94,3 +94,16 @@ body {
 .track-actions button {
     padding: 5px 20px;
 }
+
+.track-volume {
+    display: flex;
+    margin-top: 40px;
+    width: 100%;
+    align-items: center;
+}
+
+.volume-range {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,8 +1,8 @@
+import './App.css'
 import React from 'react'
-
 import { Reaplay } from 'reaplay'
 
-import { songs as songsFromUri } from './Links.json'
+// import { songs as songsFromUri } from './Links.json'
 
 const songsFromLocal: string[] = [
   require('./songs/song1.mp3'),
@@ -10,25 +10,54 @@ const songsFromLocal: string[] = [
   require('./songs/song3.mp3'),
   require('./songs/song4.mp3'),
   require('./songs/song5.mp3'),
-  require('./songs/song6.mp3')
 ]
+// if you use local songs,
 // you need use ( require ) because react will hash the file names !!!
 
 // ===============================================================
 const App = () => {
-  console.log(songsFromUri)
-  console.log(songsFromLocal)
-  console.log(metadata)
 
   return (
-    <Reaplay tracks={songsFromUri} startIndex={4}>
+    <Reaplay tracks={songsFromLocal} startIndex={10}>
       {(player: any) => {
-        console.log(player);
+        console.log(player.trackIndex);
 
         return (
           <>
             <div className='audio-player'>
-              
+
+              <h1 className='track-name'>
+                {metadata[player.trackIndex].name}
+              </h1>
+              <h3 className='track-artist'>
+                {metadata[player.trackIndex].artist}
+              </h3>
+              <p className='track-album'>
+                {metadata[player.trackIndex].album}
+              </p>
+
+              <div className='track-progress'>
+                <p>{player.trackProgressText}</p>
+                <input
+                  type='range'
+                  value={player.trackProgress}
+                  step='1'
+                  min='0'
+                  max={player.duration ? player.duration : `${player.duration}`}
+                  className='progress'
+                  onChange={(e) => player.onScrub(e.target.value)}
+                  onMouseUp={player.onScrubEnd}
+                  onKeyUp={player.onScrubEnd}
+                />
+                <p>{player.durationText}</p>
+              </div>
+
+              <div className='track-actions'>
+                <button onClick={() => player.toPrevTrack()}>prev</button>
+                <button onClick={() => player.setIsPlaying((isPlay: boolean) => !isPlay)}>{player.isPlaying ? "pause" : "play"}</button>
+                <button onClick={() => player.toNextTrack()}>next</button>
+              </div>
+
             </div>
           </>
         )

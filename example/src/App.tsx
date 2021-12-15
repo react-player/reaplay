@@ -1,32 +1,36 @@
 import React from 'react'
 
-import { Reaplay } from 'reaplay';
+import { Reaplay } from 'reaplay'
 
 import { songs as songsFromUri } from './Links.json'
 
-const songsFromLocal:string[] = [
+const songsFromLocal: string[] = [
   require('./songs/song1.mp3'),
   require('./songs/song2.mp3'),
   require('./songs/song3.mp3'),
   require('./songs/song4.mp3'),
   require('./songs/song5.mp3'),
-  require('./songs/song6.mp3'),
+  require('./songs/song6.mp3')
 ]
-// you need ( require ) because react hash the file names !!!
+// you need use ( require ) because react will hash the file names !!!
 
 // ===============================================================
 const App = () => {
   console.log(songsFromUri)
-  console.log(songsFromLocal);
+  console.log(songsFromLocal)
   console.log(metadata)
 
   return (
-    <Reaplay tracks={songsFromUri} startIndex={5}>
+    <Reaplay tracks={songsFromUri} startIndex={4}>
       {(player: any) => {
         console.log(player);
 
         return (
-          <div></div>
+          <>
+            <div className='audio-player'>
+              
+            </div>
+          </>
         )
       }}
     </Reaplay>

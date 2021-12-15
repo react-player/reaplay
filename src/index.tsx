@@ -41,6 +41,9 @@ interface Props {
  * @property {boolean}  player.isMute
  * @property {function}  player.setIsMute
  * @property {number | string}  player.buffered
+ * @property {string}  player.bufferedText
+ * @property {function}  player.forward
+ * @property {function}  player.backward
  */
 export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   
@@ -260,6 +263,31 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
 
   /**
+ * forward
+ * @function
+ * @description forward to 5s later of playing song
+ */
+
+  const forward = () => {
+    audioRef.current.currentTime += 5;
+  }
+
+
+
+  /**
+ * backward
+ * @function
+ * @description backward to 5s before of Track progress 
+ */
+
+  const backward = () => {
+    audioRef.current.currentTime -= 5;
+  }
+
+
+
+
+  /**
    * shuffle play
    * @function
    * @description play a random song in tracks list
@@ -410,7 +438,9 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     isMute, // the player is mute
     setIsMute, // set player to mute or unmute
     buffered, // the buffered value of the song
-    bufferedText: `${buffered}%`
+    bufferedText: `${buffered}%`,
+    backward, // forward to 5s
+    forward // backward to 5s
   }
 
   return children({

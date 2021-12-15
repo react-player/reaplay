@@ -100,6 +100,8 @@ Event | param | Description | Example
 `ShufflePlay` | () | play a random track of your tracks list | player.ShufflePlay()
 `setIsShuffleList` | (shuffle: boolean) | the all player action will be random </br> `next` `prev` `ended` | player.setIsShuffleList((isShuffle) => !isShuffle)
 `setIsMute` | (mute: boolean) | mute or umute the player | player.setIsMute((isMute) => !isMute)
+`forward` | () | forward to 5s later | player.forward()
+`backward` | () | backward to 5s before | player.backward()
 
 </br>
 </br>

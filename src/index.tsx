@@ -1,4 +1,5 @@
-import * as React from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import {ConvertTimeToText} from './helper'
 
 interface Props {
   text: string

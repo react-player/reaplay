@@ -43,6 +43,12 @@ interface Props {
  * @property {number | string}  player.buffered
  */
 export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
+  
+  if(startIndex < 0 || startIndex > tracks.length){
+    startIndex = 0;
+  }
+  // handle the undifind index
+  // -----------------------------------------------
  
   /**
    * here manage states

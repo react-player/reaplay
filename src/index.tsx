@@ -291,15 +291,14 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   /**
    * manage the buffered value of playing song
    */
-
   useEffect(() => {
-    if (audioRef.current.buffered.length > 0) {
-      setBuffered(
-        Math.floor((100 * audioRef.current.buffered.end(0)) / duration)
-      )
+    if(duration > 0) {
+      let i;
+      for(i = 0; i < audioRef.current.buffered.length; i++) {
+        setBuffered((audioRef.current.buffered.end(audioRef.current.buffered.length - 1 - i) / duration) * 100)
+      }
     }
-  }, [audioRef.current.buffered.length])
-
+  }, [trackProgress])
 
 
 
@@ -312,6 +311,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   useLayoutEffect(() => {
     audioRef.current.pause()
     setIsLoading(true)
+    setBuffered(0);
 
     audioRef.current = new Audio(tracks[trackIndex])
     setTrackProgress(audioRef.current.currentTime)
@@ -403,7 +403,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     setIsShuffleList, // set shuffle list mode,
     isMute, // the player is mute
     setIsMute, // set player to mute or unmute
-    buffered // the buffered value of the song
+    buffered, // the buffered value of the song
+    bufferedText: `${buffered}%`
   }
 
   return children({

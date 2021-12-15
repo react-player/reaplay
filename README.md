@@ -3,7 +3,9 @@
 > the react HOC for create custom players with any styles you like <br />
 > give me your tracks, i will give you the all function and variable you need to create a player
 
-[![NPM](https://img.shields.io/npm/v/reaplay.svg)](https://www.npmjs.com/package/reaplay) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://nodei.co/npm/reaplay.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/reaplay/) <br/>
+[![License](https://img.shields.io/npm/l/reaplay.svg)](LICENSE)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Installation
 

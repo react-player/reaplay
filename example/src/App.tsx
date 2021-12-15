@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { ExampleComponent } from 'reaplay'
-import 'reaplay/dist/index.css'
+import { Reaplay } from 'reaplay'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Reaplay text="Create React Library Example 😄" />
 }
 
 export default App

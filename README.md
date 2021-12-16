@@ -49,7 +49,7 @@ import React from 'react';
 
 import { Reaplay } from 'reaplay'
 
-const songList = [
+const songList:string[] = [
   "songSrc", // url song
   "songSrc", // url song
    require("./songSrc"), //local song

@@ -3,7 +3,9 @@
 > the react HOC for create custom players with any styles you like <br />
 > give me your tracks, i will give you the all function and variable you need to create a player
 
-[![NPM](https://img.shields.io/npm/v/reaplay.svg)](https://www.npmjs.com/package/reaplay) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://nodei.co/npm/reaplay.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/reaplay/) <br/>
+[![License](https://img.shields.io/npm/l/reaplay.svg)](LICENSE)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Installation
 
@@ -27,6 +29,12 @@ import React from 'react';
 
 import { Reaplay } from 'reaplay'
 
+const songList = [
+  "songSrc", // url song
+  "songSrc", // url song
+   require("./songSrc"), //local song
+]
+
 //                         optional ↓
 <Reaplay tracks={songList} startIndex={3} >
       {(player) => {
@@ -40,6 +48,12 @@ import { Reaplay } from 'reaplay'
 import React from 'react';
 
 import { Reaplay } from 'reaplay'
+
+const songList = [
+  "songSrc", // url song
+  "songSrc", // url song
+   require("./songSrc"), //local song
+]
 
 <Reaplay tracks={songList} >
       {(player: any) => {
@@ -100,6 +114,8 @@ Event | param | Description | Example
 `ShufflePlay` | () | play a random track of your tracks list | player.ShufflePlay()
 `setIsShuffleList` | (shuffle: boolean) | the all player action will be random </br> `next` `prev` `ended` | player.setIsShuffleList((isShuffle) => !isShuffle)
 `setIsMute` | (mute: boolean) | mute or umute the player | player.setIsMute((isMute) => !isMute)
+`forward` | () | forward to 5s later | player.forward()
+`backward` | () | backward to 5s before | player.backward()
 
 </br>
 </br>

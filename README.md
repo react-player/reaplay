@@ -29,6 +29,12 @@ import React from 'react';
 
 import { Reaplay } from 'reaplay'
 
+const songList = [
+  "songSrc", // url song
+  "songSrc", // url song
+   require("./songSrc"), //local song
+]
+
 //                         optional ↓
 <Reaplay tracks={songList} startIndex={3} >
       {(player) => {
@@ -42,6 +48,12 @@ import { Reaplay } from 'reaplay'
 import React from 'react';
 
 import { Reaplay } from 'reaplay'
+
+const songList = [
+  "songSrc", // url song
+  "songSrc", // url song
+   require("./songSrc"), //local song
+]
 
 <Reaplay tracks={songList} >
       {(player: any) => {

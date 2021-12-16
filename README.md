@@ -3,9 +3,10 @@
 > the react HOC for create custom players with any styles you like <br />
 > give me your tracks, i will give you the all function and variable you need to create a player
 
-[![NPM](https://nodei.co/npm/reaplay.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/reaplay/) <br/>
+[![NPM](https://img.shields.io/npm/v/reaplay.svg)](https://www.npmjs.com/package/reaplay)
 [![License](https://img.shields.io/npm/l/reaplay.svg)](LICENSE)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 
 ## Installation
 
@@ -63,7 +64,10 @@ const songList:string[] = [
 ```
 
 ## Example
-See the example directory for a basic working example of using this project.  To run it locally, run `npm install` in the example directory and then `npm start`.
+See the example directory for a basic working example of using this project.  To run it locally, run `npm install` in the [example directory](https://github.com/Amir-Alipour/reaplay/tree/master/example) and then `npm start`.
+
+or <br />
+[![Edit blog](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/gifted-curie-r0mm3?file=/src/App.js)
 
 <br/>
 <br/>

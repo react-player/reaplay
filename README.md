@@ -97,6 +97,7 @@ Prop | Type | Default | Notes
 `isPlaying` | Boolean | false | the player on playing or not
 `isRepeat` | Boolean | false | the player on `Repeat` the song mode or not
 `volume` | Number | 100 | the player volume. <br/> `0` to `100`
+`speed` | Number | 1 | the player playbackRate. <br/> `0.5` or `1` or `2`
 `isStopPlayMoreSong` | Boolean | false | if the song will be end, dont play more anything
 `isShuffleList` | Boolean | false | if shuffleList will be true, any action do random </br> (next, prev, ended)
 `isMute` | Boolean | false | the player mute status
@@ -114,6 +115,9 @@ Event | param | Description | Example
 `toPrevTrack` | () | go to prev track of the tracks list | player.toPrevTrack()
 `setIsRepeat` | (isRepeat: boolean) | turn on or off for repeat the playing song | player.setIsRepeat((isRepeat) => !isRepeat)
 `setVolume` | (volume: number) | set player volume, `0` to `100` | player.setVolume(70)
+`playSlow` | () | set player playbackRate (speed) to `0.5` | player.playSlow()
+`playNormal` | () | set player playbackRate (speed) to `1` | player.playNormal()
+`playFast` | () | set player playbackRate (speed) to `2` | player.playFast()
 `StopPlayMoreSong` | (stopped: boolean) | dont play more anything after the playing song will be ended | player.StopPlayMoreSong(true)
 `ShufflePlay` | () | play a random track of your tracks list | player.ShufflePlay()
 `setIsShuffleList` | (shuffle: boolean) | the all player action will be random </br> `next` `prev` `ended` | player.setIsShuffleList((isShuffle) => !isShuffle)

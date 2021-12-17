@@ -67,7 +67,7 @@ const songList:string[] = [
 See the example directory for a basic working example of using this project.  To run it locally, run `npm install` in the [example directory](https://github.com/Amir-Alipour/reaplay/tree/master/example) and then `npm start`.
 
 or <br />
-[![Edit blog](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/gifted-curie-r0mm3?file=/src/App.js)
+[![Edit blog](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/blissful-frost-yl38y)
 
 <br/>
 <br/>

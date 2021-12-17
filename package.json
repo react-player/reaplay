@@ -1,6 +1,6 @@
 {
   "name": "reaplay",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "the react HOC for create custom players with any styles you like",
   "author": "amir-alipour",
   "license": "MIT",

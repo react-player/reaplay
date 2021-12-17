@@ -33,6 +33,10 @@ interface Props {
  * @property {function}  player.setIsRepeat
  * @property {number}  player.volume
  * @property {function}  player.setVolume
+ * @property {number}  player.speed
+ * @property {function}  player.playSlow
+ * @property {function}  player.playNormal
+ * @property {function}  player.playFast
  * @property {boolean}  player.isStopPlayMoreSong
  * @property {function}  player.StopPlayMoreSong
  * @property {function}  player.ShufflePlay
@@ -68,6 +72,9 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   // played progress
 
   const [volume, setVolume] = useState<number>(100)
+  // volume of the playing song
+
+  const [speed, setSpeed] = useState<number>(1)
   // volume of the playing song
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -108,6 +115,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   const audioRef = useRef(new Audio(tracks[trackIndex]))
   audioRef.current.volume = volume / 100
   audioRef.current.muted = isMute
+  audioRef.current.playbackRate = speed
 
   audioRef.current.onloadeddata = () => setIsLoading(false)
   audioRef.current.onerror = () => setIsHaveError(true)
@@ -284,6 +292,42 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
 
 
+  /**
+   * playSlow
+   * @function
+   * @description set the player speed to (0.5)
+ */
+
+  const playSlow = () => {
+    setSpeed(0.5)
+  }
+
+
+
+  /**
+   * playNormal
+   * @function
+   * @description set the player speed to normal mode, (1)
+ */
+
+  const playNormal = () => {
+    setSpeed(1)
+  }
+
+
+
+  /**
+   * playFast
+   * @function
+   * @description set player speed to (2), it be play 2x faster than normal mode
+ */
+
+  const playFast = () => {
+    setSpeed(2)
+  }
+  
+
+
 
   /**
    * shuffle play
@@ -397,7 +441,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
       isStopPlayMoreSong,
       volume,
       isLoading,
-      isHaveError
+      isHaveError,
+      speed
     })
   }
 
@@ -438,7 +483,11 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     buffered, // the buffered value of the song
     bufferedText: `${buffered}%`,
     backward, // forward to 5s
-    forward // backward to 5s
+    forward, // backward to 5s
+    speed, // the speed range, 0.5 or 1 or 2
+    playSlow, // play slow playbackRate of track
+    playNormal, // play normal playbackRate of track
+    playFast // play fast playbackRate of track
   }
 
   return children({

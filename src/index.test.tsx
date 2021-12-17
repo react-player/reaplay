@@ -109,4 +109,14 @@ describe('Reaplay', () => {
       </Reaplay>
     )
   })
+  it("initial speed Test", () => {
+    render(
+      <Reaplay tracks={links}>
+        {(player: any) => {
+          expect(player.speed).toBe(1)
+          return null;
+        }}
+      </Reaplay>
+    )
+  })
 })

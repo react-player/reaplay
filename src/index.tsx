@@ -103,11 +103,9 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   /**
    * here manage audio
    * here i use js Audio class and ref for manage audio props and functions
-   * set crossOrigin to anonymous for sure about load the on another domain urls
    *
    */
   const audioRef = useRef(new Audio(tracks[trackIndex]))
-  audioRef.current.crossOrigin = 'anonymous'
   audioRef.current.volume = volume / 100
   audioRef.current.muted = isMute
 

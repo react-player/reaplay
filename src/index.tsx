@@ -18,6 +18,7 @@ interface Props {
  * @property {boolean}  player.isLoading
  * @property {boolean}  player.isHaveError
  * @property {number}  player.trackIndex
+ * @property {number}  player.setTrackIndex
  * @property {number}  player.duration
  * @property {string}  player.durationText
  * @property {number}  player.trackProgress
@@ -458,6 +459,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     isLoading, // loading state
     isHaveError, // error state
     trackIndex, // playing index at tracks list
+    setTrackIndex, // set playing index at tracks list
     duration, // playing song duration
     durationText: ConvertTimeToText(audioRef.current.duration), // playing song duration by minutes and : spliter
     trackProgress, // how much song played

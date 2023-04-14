@@ -130,10 +130,6 @@ Event | param | Description | Example
 </br>
 </br>
 
-## Dependency
-> Reaplay <b> don't </b>  have 3rd party library dependency. <br/>
-> just use vanilla js and react functionalites
-
 ## License
 
 MIT © [amir-alipour](https://github.com/amir-alipour) - [LICENSE](https://github.com/Amir-Alipour/reaplay/blob/master/LICENSE)

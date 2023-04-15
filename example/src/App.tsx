@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react'
-import { Reaplay } from 'reaplay'
+import { Reaplay, PlayerType } from 'reaplay'
 
 // import { songs as songsFromUri } from './Links.json'
 
@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <Reaplay tracks={songsFromLocal} startIndex={10}>
-      {(player: any) => {
+      {(player: PlayerType) => {
 
         return (
           <>

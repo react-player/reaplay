@@ -24,6 +24,26 @@ Also be sure you have `react` and `react-dom` installed in your app
 
 ## Usage
 
+### tsx
+```tsx
+import React from 'react';
+
+import { Reaplay, PlayerType } from 'reaplay'
+
+const songList:string[] = [
+  "songSrc", // url song
+  "songSrc", // url song
+   require("./songSrc"), //local song
+]
+
+//                         optional ↓
+<Reaplay tracks={songList} startIndex={2} >
+      {(player: PlayerType) => {
+          // player have functions and variables
+      }
+</Reaplay>
+```
+
 ### jsx
 ```jsx
 import React from 'react';
@@ -36,28 +56,8 @@ const songList = [
    require("./songSrc"), //local song
 ]
 
-//                         optional ↓
-<Reaplay tracks={songList} startIndex={3} >
-      {(player) => {
-          // player have functions and variables
-      }
-</Reaplay>
-```
-
-### tsx
-```tsx
-import React from 'react';
-
-import { Reaplay } from 'reaplay'
-
-const songList:string[] = [
-  "songSrc", // url song
-  "songSrc", // url song
-   require("./songSrc"), //local song
-]
-
 <Reaplay tracks={songList} >
-      {(player: any) => {
+      {(player) => {
           // player have functions and variables
       }
 </Reaplay>

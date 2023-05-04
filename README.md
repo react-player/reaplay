@@ -1,4 +1,5 @@
-# reaplay
+# React Music Player - Reaplay
+## React Custom Music Player (with custom HOC component)
 
 > the react HOC for create custom players with any styles you like <br />
 > give me your tracks, i will give you the all function and variable you need to create a player

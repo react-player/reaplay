@@ -1,10 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ConvertTimeToText } from './helper'
 
 interface Props {
   tracks: string[]
   startIndex?: number
-  children?: any
+  children?: ((props: PlayerType) => ReactNode) | ReactNode;
 }
 // prop types should be like this interface
 
@@ -447,6 +447,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     playFast // play fast playbackRate of track
   }
 
+  // @ts-ignore
   return children({
     ...data
   })

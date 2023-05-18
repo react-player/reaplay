@@ -112,7 +112,9 @@ Event | param | Description | Example
 `onScrub` |<pre>(value: number)</pre>| for change track progress on custom duration | `onChange`={(e) => player.onScrub(e.target.value)}
 `onScrubEnd` | () | `optional` -- use it on keyUp or ... on your (slider, range, any custom player duration controller) | `onMouseUp`={player.onScrubEnd} <br /> `onKeyUp`={player.onScrubEnd}
 `setIsPlaying` | (isPlaying: boolean) | for play or pause the song, use it. | `onClick`={() => player.setIsPlaying((isPlay) => !isPlay)}
-`setTrackIndex` | () | for change handly playing index. | `onClick`={() => player.setTrackIndex(5)}
+`play` | () |  for play the song, use it. | `onClick`={() => player.play()}
+`pause` | () | for pause the song, use it. | `onClick`={() => player.pause()}
+`setTrackIndex` | (trackIndex: number) | for change handly playing index. | `onClick`={() => player.setTrackIndex(5)}
 `toNextTrack` | () | go to next track of the tracks list | player.toNextTrack()
 `toPrevTrack` | () | go to prev track of the tracks list | player.toPrevTrack()
 `setIsRepeat` | (isRepeat: boolean) | turn on or off for repeat the playing song | player.setIsRepeat((isRepeat) => !isRepeat)

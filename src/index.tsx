@@ -4,7 +4,7 @@ import { ConvertTimeToText } from './helper'
 interface Props {
   tracks: string[]
   startIndex?: number
-  children?: ((props: PlayerType) => ReactNode) | ReactNode;
+  children?: ((props: PlayerType) => ReactNode) | ReactNode
 }
 // prop types should be like this interface
 
@@ -28,6 +28,8 @@ interface Props {
  * @property {function}  player.onScrubEnd
  * @property {boolean}  player.isPlaying
  * @property {function}  player.setIsPlaying
+ * @property {function}  player.play
+ * @property {function}  player.pause
  * @property {function}  player.toNextTrack
  * @property {function}  player.toPrevTrack
  * @property {boolean}  player.isRepeat
@@ -181,11 +183,35 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * on scrub get the slider or range tag value and replace it with playing song progress
    */
 
-  const onScrub = (value: number) => {
+  const onScrub = (value: number): void => {
     // Clear any timers already running
     clearInterval(intervalRef.current as NodeJS.Timeout)
     audioRef.current.currentTime = value
     setTrackProgress(audioRef.current.currentTime)
+  }
+
+  // -----------
+
+  /**
+   * play song
+   * @function
+   * @description play the current song
+   */
+
+  const play = (): void => {
+    setIsPlaying(true)
+  }
+
+  // -----------
+
+  /**
+   * pause song
+   * @function
+   * @description pause the current song
+   */
+
+  const pause = (): void => {
+    setIsPlaying(false)
   }
 
   // -----------
@@ -199,7 +225,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * this optional function
    */
 
-  const onScrubEnd = () => {
+  const onScrubEnd = (): void => {
     // If not already playing, start
     if (!isPlaying) {
       setIsPlaying(true)
@@ -216,7 +242,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * if its first song, play at last song in tracks list
    */
 
-  const toPrevTrack = () => {
+  const toPrevTrack = (): void => {
     if (isShuffleList) {
       ShufflePlay()
     } else {
@@ -237,7 +263,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * if the last song, come at first song on tracks list
    */
 
-  const toNextTrack = () => {
+  const toNextTrack = (): void => {
     if (isShuffleList) {
       ShufflePlay()
     } else {
@@ -255,7 +281,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * @description forward to 5s later of playing song
    */
 
-  const forward = () => {
+  const forward = (): void => {
     audioRef.current.currentTime += 5
   }
 
@@ -265,7 +291,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * @description backward to 5s before of Track progress
    */
 
-  const backward = () => {
+  const backward = (): void => {
     audioRef.current.currentTime -= 5
   }
 
@@ -275,7 +301,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * @description set the player speed to (0.5)
    */
 
-  const playSlow = () => {
+  const playSlow = (): void => {
     setSpeed(0.5)
   }
 
@@ -285,7 +311,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * @description set the player speed to normal mode, (1)
    */
 
-  const playNormal = () => {
+  const playNormal = (): void => {
     setSpeed(1)
   }
 
@@ -295,7 +321,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * @description set player speed to (2), it be play 2x faster than normal mode
    */
 
-  const playFast = () => {
+  const playFast = (): void => {
     setSpeed(2)
   }
 
@@ -307,7 +333,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * get a random index from tracks length and play it
    */
 
-  const ShufflePlay = () => {
+  const ShufflePlay = (): void => {
     let songsLength: number = tracks.length - 1
     let random: number = Math.floor(Math.random() * songsLength)
     setTrackIndex(random)
@@ -353,6 +379,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
   useLayoutEffect(() => {
     audioRef.current.pause()
+    setIsPlaying(false);
     setIsLoading(true)
     setBuffered(0)
 
@@ -389,7 +416,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * if some time you need get player states seconds by seconds can use it.
    */
 
-  const Logger = () => {
+  const Logger = (): void => {
     console.log({
       trackIndex,
       duration: ConvertTimeToText(duration),
@@ -409,7 +436,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   // *********
   // **
   // ==============  return data
-  const data : PlayerType = {
+  const data: PlayerType = {
     Logger, // log the states
     isLoading, // loading state
     isHaveError, // error state
@@ -424,6 +451,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     onScrubEnd,
     isPlaying, // playing state
     setIsPlaying, // playing state setter
+    play, // play current song
+    pause, // pause current song
     toNextTrack, // play next song function
     toPrevTrack, // play prevent song function
     isRepeat, // repeat state
@@ -453,7 +482,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   })
 }
 
-export type PlayerType = {
+export interface PlayerType {
   Logger: Function
   isLoading: boolean
   isHaveError: boolean
@@ -468,6 +497,8 @@ export type PlayerType = {
   onScrubEnd: Function
   isPlaying: boolean
   setIsPlaying: Function
+  play: Function
+  pause: Function
   toNextTrack: Function
   toPrevTrack: Function
   isRepeat: boolean

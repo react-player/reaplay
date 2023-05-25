@@ -33,7 +33,7 @@ interface Props {
  * @property {function}  player.toNextTrack
  * @property {function}  player.toPrevTrack
  * @property {boolean}  player.isRepeat
- * @property {function}  player.setIsRepeat
+ * @property {function}  player.repeat
  * @property {number}  player.volume
  * @property {function}  player.setVolume
  * @property {number}  player.speed
@@ -42,11 +42,12 @@ interface Props {
  * @property {function}  player.playFast
  * @property {boolean}  player.isStopPlayMoreSong
  * @property {function}  player.StopPlayMoreSong
- * @property {function}  player.ShufflePlay
- * @property {boolean}  player.isShuffleList
- * @property {function}  player.setIsShuffleList
+ * @property {boolean}  player.isShuffle
+ * @property {function}  player.playShuffle
+ * @property {function}  player.playRandom
  * @property {boolean}  player.isMute
- * @property {function}  player.setIsMute
+ * @property {function}  player.mute
+ * @property {function}  player.unmute
  * @property {number | string}  player.buffered
  * @property {string}  player.bufferedText
  * @property {function}  player.forward
@@ -159,7 +160,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
       if (audioRef.current.ended) {
         if (!isStopPlayMoreSong) {
           if (isShuffleList) {
-            ShufflePlay()
+            playRandom()
           } else {
             if (isRepeat) {
               setFourceRepeat((prev) => prev + 1)
@@ -244,7 +245,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
   const toPrevTrack = (): void => {
     if (isShuffleList) {
-      ShufflePlay()
+      playRandom()
     } else {
       if (trackIndex - 1 < 0) {
         setTrackIndex(tracks.length - 1)
@@ -265,7 +266,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
   const toNextTrack = (): void => {
     if (isShuffleList) {
-      ShufflePlay()
+      playRandom()
     } else {
       if (trackIndex < tracks.length - 1) {
         setTrackIndex(trackIndex + 1)
@@ -326,6 +327,40 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   }
 
   /**
+   * repeat
+   * @function
+   * @description set player to repeat current song
+   */
+
+  const repeat = (SetOnRepeat: boolean): void => {
+    if(SetOnRepeat) {
+      setIsRepeat(true)
+    } else {
+      setIsRepeat(false)
+    }
+  }
+
+  /**
+   * mute
+   * @function
+   * @description mute the player
+   */
+
+  const mute = (): void => {
+    setIsMute(true)
+  }
+
+  /**
+   * unmute
+   * @function
+   * @description unmute the player
+   */
+
+  const unmute = (): void => {
+    setIsMute(false)
+  }
+
+  /**
    * shuffle play
    * @function
    * @description play a random song in tracks list
@@ -333,7 +368,15 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * get a random index from tracks length and play it
    */
 
-  const ShufflePlay = (): void => {
+  const playShuffle = (shuffle: boolean): void => {
+    if (shuffle) {
+      setIsShuffleList(true)
+    } else {
+      setIsShuffleList(false)
+    }
+  }
+
+  const playRandom = (): void => {
     let songsLength: number = tracks.length - 1
     let random: number = Math.floor(Math.random() * songsLength)
     setTrackIndex(random)
@@ -379,7 +422,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
 
   useLayoutEffect(() => {
     audioRef.current.pause()
-    setIsPlaying(false);
+    setIsPlaying(false)
     setIsLoading(true)
     setBuffered(0)
 
@@ -456,16 +499,17 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     toNextTrack, // play next song function
     toPrevTrack, // play prevent song function
     isRepeat, // repeat state
-    setIsRepeat, // set repeat state
+    repeat, // set repeat state
     volume, // volume state
     setVolume, // set volume state
     isStopPlayMoreSong, // stop play more song at song ended
     StopPlayMoreSong, // set stop play more song
-    ShufflePlay, // play a random song at list function
-    isShuffleList, // shuffle list state
-    setIsShuffleList, // set shuffle list mode,
+    playShuffle, // play a random song at list function
+    isShuffle: isShuffleList, // is on shuffle or not
+    playRandom, // play a random song
     isMute, // the player is mute
-    setIsMute, // set player to mute or unmute
+    mute, // set player to mute
+    unmute, // set player to unmute
     buffered, // the buffered value of the song
     bufferedText: `${buffered}%`,
     backward, // forward to 5s
@@ -502,7 +546,7 @@ export interface PlayerType {
   toNextTrack: Function
   toPrevTrack: Function
   isRepeat: boolean
-  setIsRepeat: Function
+  repeat: Function
   volume: number
   setVolume: Function
   speed: number
@@ -511,11 +555,12 @@ export interface PlayerType {
   playFast: Function
   isStopPlayMoreSong: boolean
   StopPlayMoreSong: Function
-  ShufflePlay: Function
-  isShuffleList: boolean
-  setIsShuffleList: Function
+  playShuffle: Function
+  isShuffle: boolean
+  playRandom: Function
   isMute: boolean
-  setIsMute: Function
+  mute: Function
+  unmute: Function
   buffered: number | string
   bufferedText: string
   forward: Function

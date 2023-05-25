@@ -69,6 +69,45 @@ See the example directory for a basic working example of using this project.  To
 
 or <br />
 [![Edit blog](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/blissful-frost-yl38y)
+<br />
+
+```jsx
+<Reaplay tracks={songList} >
+      {(player) => {
+          
+          return (
+            <>
+              <input
+                  type='range'
+                  value={player.trackProgress}
+                  step='1'
+                  min='0'
+                  max={player.duration ? player.duration : `${player.duration}`}
+                  onChange={(e) => player.onScrub(e.target.value)}
+                  onMouseUp={(e) => player.onScrubEnd(e)}
+                  onKeyUp={(e) => player.onScrubEnd(e)}
+                />
+
+                <button onClick={() => player.toPrevTrack()}>prev</button>
+                <button onClick={() => player.play()}>Play</button>
+                <button onClick={() => player.pause()}>Pause</button>
+                <button onClick={() => player.toNextTrack()}>next</button>
+
+                <input
+                  type='range'
+                  value={player.volume}
+                  step='1'
+                  min='0'
+                  max='100'
+                  onChange={(e) => player.setVolume(e.target.value)}
+                />
+                <button onClick={() => player.mute()}>mute<button/>
+                <button onClick={() => player.unmute()}>unmute<button/>
+            </>
+          )
+      }
+</Reaplay>
+```
 
 <br/>
 <br/>
@@ -100,7 +139,7 @@ Prop | Type | Default | Notes
 `volume` | Number | 100 | the player volume. <br/> `0` to `100`
 `speed` | Number | 1 | the player playbackRate. <br/> `0.5` or `1` or `2`
 `isStopPlayMoreSong` | Boolean | false | if the song will be end, dont play more anything
-`isShuffleList` | Boolean | false | if shuffleList will be true, any action do random </br> (next, prev, ended)
+`isShuffle` | Boolean | false | if shuffleList will be true, any action do random </br> (next, prev, ended)
 `isMute` | Boolean | false | the player mute status
 `buffered` | Number | 0 | the buffered value of the song <br/> `0` to `100`
 `bufferedText` | String | 0 | the buffered value of the song <br/> `0%` to `100%`
@@ -117,15 +156,16 @@ Event | param | Description | Example
 `setTrackIndex` | (trackIndex: number) | for change handly playing index. | `onClick`={() => player.setTrackIndex(5)}
 `toNextTrack` | () | go to next track of the tracks list | player.toNextTrack()
 `toPrevTrack` | () | go to prev track of the tracks list | player.toPrevTrack()
-`setIsRepeat` | (isRepeat: boolean) | turn on or off for repeat the playing song | player.setIsRepeat((isRepeat) => !isRepeat)
+`repeat` | (isRepeat: boolean) | turn on or off for repeat the playing song | player.repeat((isRepeat) => !isRepeat)
 `setVolume` | (volume: number) | set player volume, `0` to `100` | player.setVolume(70)
 `playSlow` | () | set player playbackRate (speed) to `0.5` | player.playSlow()
 `playNormal` | () | set player playbackRate (speed) to `1` | player.playNormal()
 `playFast` | () | set player playbackRate (speed) to `2` | player.playFast()
 `StopPlayMoreSong` | (stopped: boolean) | dont play more anything after the playing song will be ended | player.StopPlayMoreSong(true)
-`ShufflePlay` | () | play a random track of your tracks list | player.ShufflePlay()
-`setIsShuffleList` | (shuffle: boolean) | the all player action will be random </br> `next` `prev` `ended` | player.setIsShuffleList((isShuffle) => !isShuffle)
-`setIsMute` | (mute: boolean) | mute or umute the player | player.setIsMute((isMute) => !isMute)
+`playRandom` | () | play a random track of your tracks list | player.playRandom()
+`playShuffle` | (shuffle: boolean) | the all player action will be random </br> `next` `prev` `ended` | player.playShuffle((isShuffle) => !isShuffle)
+`mute` | () | mute  the player | player.mute()
+`unmute` | () | unmute  the player | player.unmute()
 `forward` | () | forward to 5s later | player.forward()
 `backward` | () | backward to 5s before | player.backward()
 

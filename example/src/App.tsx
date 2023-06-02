@@ -48,16 +48,16 @@ const App = () => {
                 <button onClick={() => player.toPrevTrack()}>prev</button>
                 <button
                   onClick={() =>
-                    player.setIsPlaying((isPlay: boolean) => !isPlay)
+                    player.setIsPlaying(player.isPlaying ? false : true)
                   }
                 >
                   {player.isPlaying ? 'pause' : 'play'}
                 </button>
                 <button onClick={() => player.toNextTrack()}>next</button>
                 <button
-                  onClick={() =>
-                    player.setIsRepeat((isRepeat: boolean) => !isRepeat)
-                  }
+                  onClick={() => {
+                    player.isRepeat ? player.repeat(false) : player.repeat(true)
+                  }}
                 >
                   {player.isRepeat ? 'un repeat' : 'repeat'}
                 </button>
@@ -71,11 +71,13 @@ const App = () => {
                   step='1'
                   min='0'
                   max='100'
-                  onChange={(e) => player.setVolume(e.target.value)}
+                  onChange={(e) => player.setVolume(+e.target.value)}
                   className='volume-range'
                 />
                 <button
-                  onClick={() => player.setIsMute((isMute: boolean) => !isMute)}
+                  onClick={() => {
+                    player.isMute ? player.unmute() : player.mute()
+                  }}
                   style={{ padding: '5px' }}
                 >
                   {player.isMute ? 'unmute' : 'mute'}

@@ -116,6 +116,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    *
    */
   const audioRef = useRef(new Audio(tracks[trackIndex]))
+  audioRef.current.autoplay = false
   audioRef.current.volume = volume / 100
   audioRef.current.muted = isMute
   audioRef.current.playbackRate = speed
@@ -333,7 +334,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    */
 
   const repeat = (SetOnRepeat: boolean): void => {
-    if(SetOnRepeat) {
+    if (SetOnRepeat) {
       setIsRepeat(true)
     } else {
       setIsRepeat(false)
@@ -531,7 +532,7 @@ export interface PlayerType {
   isLoading: boolean
   isHaveError: boolean
   trackIndex: number
-  setTrackIndex: Function
+  setTrackIndex: (index: number) => void
   duration: number
   durationText: string
   trackProgress: number
@@ -540,22 +541,22 @@ export interface PlayerType {
   onScrub: Function
   onScrubEnd: Function
   isPlaying: boolean
-  setIsPlaying: Function
+  setIsPlaying: (isPlaying: boolean) => void
   play: Function
   pause: Function
   toNextTrack: Function
   toPrevTrack: Function
   isRepeat: boolean
-  repeat: Function
+  repeat: (setOnrepeat: boolean) => void
   volume: number
-  setVolume: Function
+  setVolume: (volume: number) => void
   speed: number
   playSlow: Function
   playNormal: Function
   playFast: Function
   isStopPlayMoreSong: boolean
   StopPlayMoreSong: Function
-  playShuffle: Function
+  playShuffle: (isShuffle: boolean) => void
   isShuffle: boolean
   playRandom: Function
   isMute: boolean

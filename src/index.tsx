@@ -52,6 +52,7 @@ interface Props {
  * @property {string}  player.bufferedText
  * @property {function}  player.forward
  * @property {function}  player.backward
+ * @property {function}  player.forceUpdatePlayer
  */
 export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   if (startIndex < 0 || startIndex > tracks.length) {
@@ -101,6 +102,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   const [fourceRepeat, setFourceRepeat] = useState<number>(0)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isHaveError, setIsHaveError] = useState<boolean>(false)
+  const [forcePlayerUpdate, setForcePlayerUpdate] = useState<number>(0)
   // helper states
 
   // =====================================================
@@ -383,6 +385,10 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     setTrackIndex(random)
   }
 
+  const forceUpdatePlayer = (): void => {
+    setForcePlayerUpdate((prev) => prev + 1)
+  }
+
   /**
    * manage isPlay state for play or pause the song
    * start timer for detect when the song ended or more ..
@@ -439,7 +445,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
       // Set the isReady ref as true for the next pass
       isReady.current = true
     }
-  }, [trackIndex, fourceRepeat])
+  }, [trackIndex, fourceRepeat, forcePlayerUpdate])
 
   /**
    * clean the memory and pause the song for manage memory leak and
@@ -518,7 +524,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     speed, // the speed range, 0.5 or 1 or 2
     playSlow, // play slow playbackRate of track
     playNormal, // play normal playbackRate of track
-    playFast // play fast playbackRate of track
+    playFast, // play fast playbackRate of track
+    forceUpdatePlayer // force Re-Render Player
   }
 
   // @ts-ignore
@@ -566,4 +573,5 @@ export interface PlayerType {
   bufferedText: string
   forward: Function
   backward: Function
+  forceUpdatePlayer: Function
 }

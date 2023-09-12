@@ -127,7 +127,7 @@ Param | Type | Default | Notes
 Prop | Type | Default | Notes
 --- | --- | --- | ---
 `isLoading` | Boolean | false | if use Uri tracks, you need wait for the uri will be load
-`isHaveError` | Boolean | false | use it for start at custom index of your tracks array
+`isHaveError` | Boolean | false | if your track returned error, it give you a boolean
 `trackIndex` | Number | 0 | the playing index of the tracks array
 `duration` | Number | song duration | the duration of the playing song
 `durationText` | String | song duration converted | the duration of the playing song converted to 00:00 string
@@ -167,9 +167,15 @@ Event | param | Description | Example
 `unmute` | () | unmute  the player | player.unmute()
 `forward` | () | forward to 5s later | player.forward()
 `backward` | () | backward to 5s before | player.backward()
+`forceUpdatePlayer` | () | forece Re-Render player | player.forceUpdatePlayer()
 
 </br>
 </br>
+
+### Fix Player Start by itself : </br>
+<img width="798" alt="242920537-9cedf5bb-ad7e-4488-aa03-29765826182b" src="https://github-production-user-asset-6210df.s3.amazonaws.com/73488911/267464235-98384f28-a7f8-440b-9c2c-6745bfe9135a.png">
+
+
 </br>
 
 ## License

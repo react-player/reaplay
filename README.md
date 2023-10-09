@@ -168,6 +168,7 @@ Event | param | Description | Example
 `forward` | () | forward to 5s later | player.forward()
 `backward` | () | backward to 5s before | player.backward()
 `forceUpdatePlayer` | () | forece Re-Render player | player.forceUpdatePlayer()
+`update` | () | update player | player.update()
 
 </br>
 </br>

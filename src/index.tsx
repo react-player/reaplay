@@ -389,6 +389,10 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     setForcePlayerUpdate((prev) => prev + 1)
   }
 
+  const update = (): void => {
+    onScrubEnd();
+  }
+
   /**
    * manage isPlay state for play or pause the song
    * start timer for detect when the song ended or more ..
@@ -402,6 +406,14 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
       audioRef.current.pause()
     }
   }, [isPlaying])
+
+  /**
+   * manage isRepeat update state for repeat the song
+   */
+
+  useEffect(() => {
+    onScrubEnd();
+  }, [isRepeat])
 
   /**
    * manage the buffered value of playing song
@@ -525,7 +537,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
     playSlow, // play slow playbackRate of track
     playNormal, // play normal playbackRate of track
     playFast, // play fast playbackRate of track
-    forceUpdatePlayer // force Re-Render Player
+    forceUpdatePlayer, // force Re-Render Player
+    update // update the player
   }
 
   // @ts-ignore
@@ -574,4 +587,5 @@ export interface PlayerType {
   forward: Function
   backward: Function
   forceUpdatePlayer: Function
+  update: Function
 }

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { ConvertTimeToText } from './helper'
 
 interface Props {
@@ -99,7 +99,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
   const [buffered, setBuffered] = useState<number>(0)
   //  control the player mute, unmute
 
-  const [fourceRepeat, setFourceRepeat] = useState<number>(0)
+
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isHaveError, setIsHaveError] = useState<boolean>(false)
   const [forcePlayerUpdate, setForcePlayerUpdate] = useState<number>(0)
@@ -166,7 +166,8 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
             playRandom()
           } else {
             if (isRepeat) {
-              setFourceRepeat((prev) => prev + 1)
+              onScrub(0);
+              audioRef.current.play();
             } else {
               toNextTrack()
             }
@@ -439,7 +440,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
    * if fource update be called, it do anything at first
    */
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     audioRef.current.pause()
     setIsPlaying(false)
     setIsLoading(true)
@@ -457,7 +458,7 @@ export const Reaplay = ({ tracks, startIndex = 0, children }: Props) => {
       // Set the isReady ref as true for the next pass
       isReady.current = true
     }
-  }, [trackIndex, fourceRepeat, forcePlayerUpdate])
+  }, [trackIndex, forcePlayerUpdate])
 
   /**
    * clean the memory and pause the song for manage memory leak and

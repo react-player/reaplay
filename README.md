@@ -98,10 +98,10 @@ or
                   step='1'
                   min='0'
                   max='100'
-                  onChange={(e) => player.setVolume(e.target.value)}
+                  onChange={(e) => player.setVolume(+e.target.value)}
                 />
-                <button onClick={() => player.mute()}>mute<button/>
-                <button onClick={() => player.unmute()}>unmute<button/>
+                <button onClick={() => player.mute()}>mute</button>
+                <button onClick={() => player.unmute()}>unmute</button>
             </>
           )
       }
@@ -173,7 +173,9 @@ Event | param | Description | Example
 </br>
 </br>
 
-### Fix Player Start by itself : </br>
+### Fix Browser Condition : 
+browsers don't give access to play sound without at least one user interaction with website <br/>
+
 <img width="798" alt="242920537-9cedf5bb-ad7e-4488-aa03-29765826182b" src="https://github-production-user-asset-6210df.s3.amazonaws.com/73488911/267464235-98384f28-a7f8-440b-9c2c-6745bfe9135a.png">
 
 

@@ -104,6 +104,7 @@ or
                 <button onClick={() => player.unmute()}>unmute</button>
             </>
           )
+        }
       }
 </Reaplay>
 ```
